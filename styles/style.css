@@ -55,7 +55,6 @@ ol {
 
 .content {
   width: 1140px;
-  height: 534px;
   display: grid;
   column-gap: 30px;
   align-items: end;
@@ -64,7 +63,6 @@ ol {
 
 .title {
   margin-bottom: 26px;
-  margin-right: 140px;
   color: #fff;
 }
 
@@ -98,7 +96,7 @@ ol {
 .search-form {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: end;
 }
 
@@ -131,8 +129,8 @@ ol {
 .search-form__textfield {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  border-right: 0;
-  border-left: 0;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
   background-color: #1b1919;
   font-family: 'Fira Sans Condensed', sans-serif;
   color: #fff;
@@ -140,6 +138,11 @@ ol {
   font-weight: 400;
   min-width: 225px;
   appearance: none;
+}
+
+.search-form__textfield:active {
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
 }
 
 .search-form__textfield:focus-visible {
@@ -151,10 +154,14 @@ ol {
   outline-offset: 1px;
 }
 
-.search-form__label-text:hover {
+.search-form__label:has(.search-form__label-text:not(.visually-hidden)):hover {
   text-decoration: underline;
   cursor: pointer;
   text-decoration-skip-ink: none;
+}
+
+.search-form__label:has(.search-form__label-text:not(.visually-hidden)):active {
+  text-decoration: none;
 }
 
 .search-form__pseudo-checkbox {
@@ -183,8 +190,10 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .content__list-container {
   height: 298px;
   width: 399px;
-  overflow-y: scroll;
-  padding: 3px;
+  overflow-y: auto;
+  padding-right: 3px;
+  padding-left: 3px;
+  padding-bottom: 2px;
   position: relative;
 }
 
@@ -208,6 +217,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 
 .content__card-link:active {
   background-color: #545050;
+  text-decoration: none;
 }
 
 .content__card-link:focus {
@@ -231,6 +241,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   height: 103px;
   object-fit: cover;
   object-position: center;
+  flex-shrink: 0;
 }
 
 .content__video-card-description-container {
@@ -243,6 +254,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
   font-size: 30px;
   line-height: 1;
   text-transform: uppercase;
+  margin-bottom: 6px;
 
   width: 196px;
   overflow: hidden;
@@ -253,7 +265,7 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 .content__video-card-description {
   font-size: 18px;
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 16.2px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3; 
@@ -275,13 +287,14 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox::after {
 }
 
 .button {
-  all: unset;
+  appearance: none;
   display: inline-block;
   border: 1px solid #fff;
   background-color: transparent;
   color: #fff;
   font-size: 18px;
   font-weight: 700;
+  font-family: inherit;
 }
 
 .button:hover {
